@@ -2,7 +2,6 @@
 .gradle/
 *.gradle.kts~*
 *.gradle~*
-.gradle-user
 
 # Build outputs
 /build/

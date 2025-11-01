@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.view.PreviewView
 import androidx.camera.video.FileOutputOptions
 import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
@@ -59,6 +60,9 @@ class PracticeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPracticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Use texture-based preview so it stays within its constrained bounds.
+        binding.cameraPreview.setImplementationMode(PreviewView.ImplementationMode.COMPATIBLE)
 
         exerciseMeta = extractExerciseMeta()
         if (exerciseMeta == null) {

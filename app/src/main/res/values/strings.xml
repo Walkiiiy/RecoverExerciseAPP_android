@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">乳腺癌康复操</string>
-    <string name="exercise_selection_title">选择康复操</string>
+    <string name="exercise_selection_title">康复操</string>
     <string name="history_title">历史记录</string>
     <string name="start_practice">开始跟练</string>
     <string name="practice_instructions">点击开始播放演示视频并记录你的动作。</string>

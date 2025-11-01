@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.RecoverExercise" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/md_theme_light_primary</item>
-        <item name="colorPrimaryVariant">@color/md_theme_light_secondary</item>
-        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
-        <item name="android:statusBarColor">@color/md_theme_light_primary</item>
+
+    <!-- 全局主题：Material3 日夜模式，无 ActionBar -->
+    <style name="Theme.RecoverExercise" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- #4CAFB7 #DDDDDD-->
+        <item name="colorPrimary">#DDDDDD</item>
+        <item name="colorOnPrimary">#000000</item>
+    
+        <!-- 全局圆角策略（中尺寸组件 16dp，大尺寸 24dp） -->
+        <item name="shapeAppearanceMediumComponent">@style/Shape.Medium.Rounded</item>
+        <item name="shapeAppearanceLargeComponent">@style/Shape.Large.Rounded</item>
+
+        <!-- 全局文字外观（跟随 M3，保持统一） -->
+        <item name="textAppearanceBodyLarge">@style/Text.BodyLarge</item>
+        <item name="textAppearanceTitleMedium">@style/Text.TitleMedium</item>
     </style>
 
     <style name="Theme.RecoverExercise.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="Shape.Medium.Rounded" parent="@style/ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="Shape.Large.Rounded" parent="@style/ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+    <style name="Text.BodyLarge" parent="TextAppearance.Material3.BodyLarge"/>
+    <style name="Text.TitleMedium" parent="TextAppearance.Material3.TitleMedium"/>
+
 </resources>
