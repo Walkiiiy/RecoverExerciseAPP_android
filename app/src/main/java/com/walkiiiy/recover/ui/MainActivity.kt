@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun showFragment(itemId: Int) {
         val fragmentManager = supportFragmentManager
+        
+        // 使用 commitAllowingStateLoss() 代替 commit()，防止在 onSaveInstanceState 后崩溃
         val transaction = fragmentManager.beginTransaction()
 
         NavigationItem.entries.forEach { navItem ->
@@ -47,7 +49,8 @@ class MainActivity : AppCompatActivity() {
             transaction.show(fragment)
         }
 
-        transaction.commit()
+        // 使用 commitAllowingStateLoss 避免状态丢失异常
+        transaction.commitAllowingStateLoss()
         binding.toolbar.title = navigationItem.titleResId.let(::getString)
     }
 

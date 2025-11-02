@@ -27,7 +27,8 @@
         <activity
             android:name=".ui.practice.PracticeActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"

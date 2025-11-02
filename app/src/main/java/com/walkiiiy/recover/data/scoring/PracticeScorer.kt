@@ -54,7 +54,11 @@ class PracticeScorer(private val context: Context) : Closeable {
 
     // ***************************************************************
 
-    private val poseLandmarker: PoseLandmarker by lazy { createPoseLandmarker() }
+    private var poseLandmarkerInitialized = false
+    private val poseLandmarker: PoseLandmarker by lazy { 
+        poseLandmarkerInitialized = true
+        createPoseLandmarker() 
+    }
 
     /**
      * 对两段视频进行相似度评分。
@@ -264,12 +268,17 @@ class PracticeScorer(private val context: Context) : Closeable {
     }
 
     override fun close() {
-        try { poseLandmarker.close() } catch (_: Exception) {}
+        // 只在已经初始化的情况下才关闭，避免触发 lazy 初始化导致库加载失败
+        try { 
+            if (poseLandmarkerInitialized) {
+                poseLandmarker.close() 
+            }
+        } catch (_: Exception) {}
     }
 
     companion object {
         private const val TAG = "PracticeScorer"
-        private const val MODEL_ASSET = "pose_landmarker_full.task" // 放在 assets/
+        private const val MODEL_ASSET = "pose_landmarker_lite.task" // 放在 assets/
 
         /**
          * 工具函数：从 raw 资源 id 构建 android.resource:// 的 Uri
