@@ -53,10 +53,6 @@ android {
 
 dependencies {
     
-    //mediapipe pose dectation
-    implementation ("com.google.mediapipe:tasks-vision:latest.release")
-
-
     implementation("com.google.android.material:material:1.12.0")
 
     implementation("androidx.core:core-ktx:1.12.0")
@@ -74,7 +70,8 @@ dependencies {
     implementation("androidx.camera:camera-view:1.3.1")
     implementation("androidx.camera:camera-video:1.3.1")
 
-    implementation("com.google.mediapipe:tasks-vision:0.202.0")
+    // MediaPipe Pose Landmarker - 与示例相同的版本
+    implementation("com.google.mediapipe:tasks-vision:0.10.29")
 
     implementation("org.tensorflow:tensorflow-lite:2.13.0")
     implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
