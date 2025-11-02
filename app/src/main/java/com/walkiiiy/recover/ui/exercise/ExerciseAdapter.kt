@@ -32,6 +32,17 @@ class ExerciseAdapter(
             binding.descriptionText.text = exercise.description
             binding.repetitionBadge.text =
                 binding.root.context.getString(R.string.exercise_count, exercise.repetitionCount)
+            
+            // 设置缩略图
+            val thumbnailResId = binding.root.context.resources.getIdentifier(
+                exercise.thumbnailDrawable,
+                "drawable",
+                binding.root.context.packageName
+            )
+            if (thumbnailResId != 0) {
+                binding.videoThumbnail.setImageResource(thumbnailResId)
+            }
+            
             binding.startButton.setOnClickListener {
                 callback.onExerciseSelected(exercise)
             }

@@ -10,6 +10,7 @@ object ExerciseCatalog {
             description = "促进腋窝淋巴回流，减轻术后手臂水肿。",
             demoVideoAssetName = "demo_breast_rehab",
             repetitionCount = 10,
+            thumbnailDrawable = "exercises" // 使用 exercises.png
         ),
         Exercise(
             id = "shoulder_mobility",
@@ -17,6 +18,7 @@ object ExerciseCatalog {
             description = "改善肩关节活动度，缓解肩部紧张。",
             demoVideoAssetName = "demo_breast_rehab",
             repetitionCount = 12,
+            thumbnailDrawable = "fitness" // 使用 fitness.png
         ),
         Exercise(
             id = "chest_expansion",
@@ -24,6 +26,31 @@ object ExerciseCatalog {
             description = "提升胸廓扩展能力，辅助呼吸功能恢复。",
             demoVideoAssetName = "demo_breast_rehab",
             repetitionCount = 8,
+            thumbnailDrawable = "fitnessleg" // 使用 fitnessleg.png
+        ),
+        Exercise(
+            id = "lymph_drainage",
+            title = "淋巴引流操",
+            description = "促进腋窝淋巴回流，减轻术后手臂水肿。",
+            demoVideoAssetName = "demo_breast_rehab",
+            repetitionCount = 10,
+            thumbnailDrawable = "exercises" // 使用 exercises.png
+        ),
+        Exercise(
+            id = "shoulder_mobility",
+            title = "肩关节灵活操",
+            description = "改善肩关节活动度，缓解肩部紧张。",
+            demoVideoAssetName = "demo_breast_rehab",
+            repetitionCount = 12,
+            thumbnailDrawable = "fitness" // 使用 fitness.png
+        ),
+        Exercise(
+            id = "chest_expansion",
+            title = "胸廓扩展操",
+            description = "提升胸廓扩展能力，辅助呼吸功能恢复。",
+            demoVideoAssetName = "demo_breast_rehab",
+            repetitionCount = 8,
+            thumbnailDrawable = "fitnessleg" // 使用 fitnessleg.png
         ),
     )
 }

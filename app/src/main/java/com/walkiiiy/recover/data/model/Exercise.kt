@@ -6,4 +6,5 @@ data class Exercise(
     val description: String,
     val demoVideoAssetName: String,
     val repetitionCount: Int,
+    val thumbnailDrawable: String = "exercises", // 封面图片drawable名称
 )
