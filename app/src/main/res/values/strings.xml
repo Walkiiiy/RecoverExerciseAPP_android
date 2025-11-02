@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">乳腺癌康复操</string>
-    <string name="exercise_selection_title">康复操</string>
-    <string name="history_title">历史记录</string>
-    <string name="start_practice">开始跟练</string>
-    <string name="practice_instructions">点击开始播放演示视频并记录你的动作。</string>
+    <string name="app_name">康复训练</string>
+    <string name="exercise_selection_title">训练</string>
+    <string name="history_title">记录</string>
+    <string name="start_practice">开始训练</string>
+    <string name="practice_instructions">观看演示视频，跟随动作完成训练</string>
     <string name="request_permissions">需要摄像头和麦克风权限以记录视频。</string>
-    <string name="recording_in_progress">录制中…</string>
-    <string name="recording_completed">录制完成，正在评估动作标准度…</string>
-    <string name="score_label">评分：%1$.1f</string>
-    <string name="no_history_placeholder">还没有历史记录，快去练习吧！</string>
-    <string name="practice_complete">完成练习</string>
-    <string name="practice_again">重新练习</string>
-    <string name="exercise_count">%1$d次动作</string>
+    <string name="recording_in_progress">🎥 正在录制…</string>
+    <string name="recording_completed">✅ 录制完成，正在评估动作质量</string>
+    <string name="score_label">得分 %1$.1f</string>
+    <string name="no_history_placeholder">暂无训练记录\n开始第一次训练吧！</string>
+    <string name="practice_complete">结束训练</string>
+    <string name="practice_again">再次训练</string>
+    <string name="exercise_count">%1$d 个动作</string>
+    <string name="exercise_subtitle">专业康复训练课程</string>
+    <string name="ready_to_start">准备好了吗？让我们开始吧</string>
+    <string name="watch_demo">观看演示</string>
+    <string name="your_score">您的得分</string>
 </resources>

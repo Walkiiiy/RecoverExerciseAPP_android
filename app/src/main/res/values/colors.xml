@@ -1,21 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 种子色：冷灰绿，低饱和度，让界面有一点气质而不喧宾夺主 -->
-    <color name="seed">#A9BDB7</color>
-
-    <!-- 主色：浅灰绿，既有层次感又不过于鲜艳 -->
-    <color name="md_theme_light_primary">#BFCFCC</color>
-    <color name="md_theme_light_onPrimary">#1C1C1C</color>
-
-    <!-- 次色：淡灰蓝，用于按钮边框、强调线条、选中状态 -->
-    <color name="md_theme_light_secondary">#C9CED7</color>
-
-    <!-- 背景：偏暖的白，不是纯白(#FFFFFF)，而是带一点灰，柔和眼睛 -->
-    <color name="md_theme_light_background">#F5F6F7</color>
-
-    <!-- 表面色：纯净白，用于卡片、浮层、按钮背景 -->
-    <color name="md_theme_light_surface">#FFFFFF</color>
-
-    <!-- 文字颜色：中性深灰，适合高对比阅读 -->
-    <color name="md_theme_light_onSurface">#2A2A2A</color>
+    <!-- Ultra-light, Airy Color Scheme - Maximum Transparency -->
+    
+    <!-- Primary colors - Soft pastel blue -->
+    <color name="seed">#5BA3F5</color>
+    <color name="md_theme_light_primary">#5BA3F5</color>
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+    <color name="md_theme_light_primaryContainer">#F0F7FF</color>
+    <color name="md_theme_light_onPrimaryContainer">#0A2E4D</color>
+    
+    <!-- Secondary colors - Ultra light gray -->
+    <color name="md_theme_light_secondary">#A8A8AD</color>
+    <color name="md_theme_light_onSecondary">#FFFFFF</color>
+    <color name="md_theme_light_secondaryContainer">#F8F8FA</color>
+    <color name="md_theme_light_onSecondaryContainer">#2C2C2E</color>
+    
+    <!-- Tertiary colors - Soft mint -->
+    <color name="md_theme_light_tertiary">#6ED89A</color>
+    <color name="md_theme_light_onTertiary">#FFFFFF</color>
+    
+    <!-- Error colors - Soft red -->
+    <color name="md_theme_light_error">#FF6B6B</color>
+    <color name="md_theme_light_errorContainer">#FFF0F0</color>
+    <color name="md_theme_light_onError">#FFFFFF</color>
+    <color name="md_theme_light_onErrorContainer">#410002</color>
+    
+    <!-- Background - Ultra light, almost white -->
+    <color name="md_theme_light_background">#FAFBFC</color>
+    <color name="md_theme_light_onBackground">#1C1C1E</color>
+    
+    <!-- Surface - Pure white with transparency -->
+    <color name="md_theme_light_surface">#FEFEFE</color>
+    <color name="md_theme_light_onSurface">#2C2C2E</color>
+    <color name="md_theme_light_surfaceVariant">#F5F7F9</color>
+    <color name="md_theme_light_onSurfaceVariant">#5C5C60</color>
+    
+    <!-- Outline - Nearly invisible -->
+    <color name="md_theme_light_outline">#EFEFEF</color>
+    <color name="md_theme_light_outlineVariant">#F8F8F8</color>
+    
+    <!-- Apple-specific UI colors - Lighter version -->
+    <color name="apple_separator">#D8D8DC</color>
+    <color name="apple_separator_light">#EEEEEF</color>
+    <color name="apple_label">#1C1C1E</color>
+    <color name="apple_label_secondary">#6C6C70</color>
+    <color name="apple_label_tertiary">#8E8E93</color>
+    <color name="apple_fill_quaternary">#F6F7F8</color>
+    
+    <!-- Card - Ultra light with transparency -->
+    <color name="card_blur_background">#FCFDFE</color>
+    <color name="card_overlay">#FDFEFF</color>
+    <color name="card_white_transparent">#F8FFFFFF</color>
+    
+    <!-- Glass effect - More transparent -->
+    <color name="glass_overlay_light">#FAFFFFFF</color>
+    <color name="glass_overlay_medium">#F0FFFFFF</color>
+    <color name="glass_overlay_strong">#E8FFFFFF</color>
+    <color name="shadow_light">#08000000</color>
+    <color name="shadow_ultralight">#04000000</color>
 </resources>

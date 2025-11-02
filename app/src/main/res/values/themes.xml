@@ -1,37 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- 全局主题：Material3 日夜模式，无 ActionBar -->
-    <style name="Theme.RecoverExercise" parent="Theme.Material3.DayNight.NoActionBar">
-    <!-- #4CAFB7 #DDDDDD-->
-        <item name="colorPrimary">#DDDDDD</item>
-        <item name="colorOnPrimary">#000000</item>
-    
-        <!-- 全局圆角策略（中尺寸组件 16dp，大尺寸 24dp） -->
-        <item name="shapeAppearanceMediumComponent">@style/Shape.Medium.Rounded</item>
-        <item name="shapeAppearanceLargeComponent">@style/Shape.Large.Rounded</item>
-
-        <!-- 全局文字外观（跟随 M3，保持统一） -->
-        <item name="textAppearanceBodyLarge">@style/Text.BodyLarge</item>
-        <item name="textAppearanceTitleMedium">@style/Text.TitleMedium</item>
+    <!-- Apple-inspired Premium Theme -->
+    <style name="Theme.RecoverExercise" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary Colors - iOS Blue -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        
+        <!-- Secondary Colors - Minimal Gray -->
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_light_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_light_onSecondaryContainer</item>
+        
+        <!-- Tertiary Colors - Accent Green -->
+        <item name="colorTertiary">@color/md_theme_light_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_light_onTertiary</item>
+        
+        <!-- Error Colors - iOS Red -->
+        <item name="colorError">@color/md_theme_light_error</item>
+        <item name="colorOnError">@color/md_theme_light_onError</item>
+        <item name="colorErrorContainer">@color/md_theme_light_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_theme_light_onErrorContainer</item>
+        
+        <!-- Background - Pure White -->
+        <item name="android:colorBackground">@color/md_theme_light_background</item>
+        <item name="colorOnBackground">@color/md_theme_light_onBackground</item>
+        
+        <!-- Surface Colors -->
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
+        
+        <!-- Outline - Minimal -->
+        <item name="colorOutline">@color/md_theme_light_outline</item>
+        <item name="colorOutlineVariant">@color/md_theme_light_outlineVariant</item>
+        
+        <!-- Apple-style Shapes - Larger corners -->
+        <item name="shapeAppearanceSmallComponent">@style/Shape.Apple.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/Shape.Apple.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/Shape.Apple.Large</item>
+        
+        <!-- Window - Transparent, light status bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
     </style>
 
-    <style name="Theme.RecoverExercise.NoActionBar">
+    <!-- No ActionBar variant -->
+    <style name="Theme.RecoverExercise.NoActionBar" parent="Theme.RecoverExercise">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Shape.Medium.Rounded" parent="@style/ShapeAppearance.Material3.MediumComponent">
+    <!-- Apple-inspired Shape Appearances -->
+    <style name="Shape.Apple.Small" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+    
+    <style name="Shape.Apple.Medium" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
     </style>
-
-    <style name="Shape.Large.Rounded" parent="@style/ShapeAppearance.Material3.LargeComponent">
+    
+    <style name="Shape.Apple.Large" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">24dp</item>
     </style>
-
-    <style name="Text.BodyLarge" parent="TextAppearance.Material3.BodyLarge"/>
-    <style name="Text.TitleMedium" parent="TextAppearance.Material3.TitleMedium"/>
 
 </resources>

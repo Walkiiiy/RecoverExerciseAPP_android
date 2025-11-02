@@ -59,7 +59,7 @@ class HistoryFragment : Fragment(), HistoryAdapter.Callback {
     private fun observeHistory() {
         viewModel.historyItems.observe(viewLifecycleOwner) { items ->
             adapter.submitList(items)
-            binding.emptyText.isVisible = items.isEmpty()
+            binding.emptyStateLayout.isVisible = items.isEmpty()
             binding.historyRecyclerView.isVisible = items.isNotEmpty()
         }
     }

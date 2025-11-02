@@ -30,7 +30,7 @@ class ExerciseAdapter(
         fun bind(exercise: Exercise) {
             binding.titleText.text = exercise.title
             binding.descriptionText.text = exercise.description
-            binding.repetitionText.text =
+            binding.repetitionBadge.text =
                 binding.root.context.getString(R.string.exercise_count, exercise.repetitionCount)
             binding.startButton.setOnClickListener {
                 callback.onExerciseSelected(exercise)

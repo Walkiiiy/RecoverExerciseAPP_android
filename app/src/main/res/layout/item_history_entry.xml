@@ -4,56 +4,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
     android:layout_marginBottom="12dp"
-    app:cardUseCompatPadding="true">
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/card_white_transparent"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="1dp"
+    app:strokeColor="@color/apple_separator_light"
+    app:strokeWidth="0dp"
+    app:cardUseCompatPadding="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="20dp">
+
+        <!-- 分数徽章背景 -->
+        <View
+            android:id="@+id/scoreBgDecoration"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/bg_card_gradient"
+            android:alpha="0.2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 奖杯图标 -->
+        <ImageView
+            android:id="@+id/trophyIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:background="@drawable/bg_badge"
+            android:src="@drawable/ic_trophy"
+            android:contentDescription="得分"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/titleText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_theme_light_onSurface"
-            android:textSize="16sp"
+            android:layout_marginStart="14dp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="@color/apple_label"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:letterSpacing="-0.01"
+            app:layout_constraintTop_toTopOf="@id/trophyIcon"
+            app:layout_constraintStart_toEndOf="@id/trophyIcon"
+            app:layout_constraintEnd_toStartOf="@+id/scoreText"
             tools:text="淋巴引流操" />
 
         <TextView
             android:id="@+id/timeText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/md_theme_light_secondary"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="2dp"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            android:textColor="@color/apple_label_tertiary"
             app:layout_constraintTop_toBottomOf="@id/titleText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/trophyIcon"
+            app:layout_constraintEnd_toStartOf="@+id/scoreText"
             tools:text="2024-03-01 09:30" />
 
         <TextView
             android:id="@+id/scoreText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/md_theme_light_onSurface"
+            android:background="@drawable/bg_badge"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="@color/md_theme_light_primary"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/timeText"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="评分：88.5" />
+            app:layout_constraintTop_toTopOf="@id/trophyIcon"
+            app:layout_constraintBottom_toBottomOf="@id/trophyIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="88.5" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/watchButton"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
             android:text="@string/practice_again"
-            app:layout_constraintTop_toBottomOf="@id/scoreText"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            app:icon="@drawable/ic_repeat"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconSize="18dp"
+            app:cornerRadius="14dp"
+            app:strokeWidth="1.5dp"
+            app:strokeColor="@color/md_theme_light_primary"
+            app:layout_constraintTop_toBottomOf="@id/trophyIcon"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

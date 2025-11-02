@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_exercises"
-        android:icon="@android:drawable/ic_media_play"
+        android:icon="@drawable/ic_exercise"
         android:title="@string/exercise_selection_title" />
     <item
         android:id="@+id/navigation_history"
-        android:icon="@android:drawable/ic_menu_recent_history"
+        android:icon="@drawable/ic_history"
         android:title="@string/history_title" />
 </menu>
