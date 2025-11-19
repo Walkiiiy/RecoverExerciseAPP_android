@@ -22,6 +22,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- 广告水印 -->
+    <LinearLayout
+        android:id="@+id/adWatermark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingEnd="12dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/code"
+            android:contentDescription="广告二维码"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="NKDQ\n课题组制作"
+            android:textSize="12sp"
+            android:textColor="@color/apple_label_secondary"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <!-- Ultra-thin divider -->
     <View
         android:id="@+id/toolbarDivider"

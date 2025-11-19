@@ -4,22 +4,27 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
 import android.net.Uri
-import android.os.SystemClock
 import android.util.Log
 import com.google.mediapipe.framework.image.BitmapImageBuilder
+import com.google.mediapipe.tasks.components.containers.NormalizedLandmark
 import com.google.mediapipe.tasks.core.BaseOptions
 import com.google.mediapipe.tasks.core.Delegate
 import com.google.mediapipe.tasks.vision.core.RunningMode
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarker
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarkerResult
 import kotlin.math.sqrt
-
+import kotlin.math.max
+import kotlin.math.min
 /**
  * PracticeScorer - 用于评估练习视频与参考视频的相似度
  * 使用MediaPipe Pose Landmarker进行姿态检测和比较
  */
+// 要改调分函数，搜索 max
+
+
 class PracticeScorer(private val context: Context) {
 
+    // 1.属性设置
     private var poseLandmarker: PoseLandmarker? = null
     private var isInitialized = false
     private var initializationError: Throwable? = null
@@ -27,6 +32,7 @@ class PracticeScorer(private val context: Context) {
     /**
      * 重置PoseLandmarker（用于处理新视频）
      */
+    // 2.视频重置 （用于处理新视频）
     private fun resetPoseLandmarker() {
         try {
             poseLandmarker?.close()
@@ -42,6 +48,7 @@ class PracticeScorer(private val context: Context) {
     /**
      * 延迟初始化PoseLandmarker（在第一次使用时初始化）
      */
+    // 3.用于处理错误
     private fun ensureInitialized() {
         if (isInitialized) {
             // 如果之前初始化失败过，抛出异常
@@ -120,12 +127,14 @@ class PracticeScorer(private val context: Context) {
         }
     }
 
+
     /**
      * 评分主方法：比较录制视频和参考视频的相似度
      * @param recordedUri 录制的视频URI
      * @param referenceUri 参考视频URI
      * @return 相似度分数 (0-100)
      */
+    // 4.打分函数
     fun score(recordedUri: Uri, referenceUri: Uri): Double {
         // 延迟初始化：只在第一次调用score时初始化
         ensureInitialized()
@@ -134,7 +143,7 @@ class PracticeScorer(private val context: Context) {
             Log.d(TAG, "开始评分: recorded=$recordedUri, reference=$referenceUri")
 
             // 提取两个视频的姿态关键点
-            val recordedPoses = extractPosesFromVideo(recordedUri)
+            val recordedPoses = extractPosesFromVideo(recordedUri)      // List<PoseLandMarkerResult>   ~~~~~~~~~~~~~~~~~~~~
             val referencePoses = extractPosesFromVideo(referenceUri)
 
             if (recordedPoses.isEmpty()) {
@@ -162,6 +171,7 @@ class PracticeScorer(private val context: Context) {
     /**
      * 从视频中提取姿态关键点
      */
+    // 5.姿势提取
     private fun extractPosesFromVideo(videoUri: Uri): List<PoseLandmarkerResult> {
         // 每次处理新视频时重新创建PoseLandmarker以重置状态
         resetPoseLandmarker()
@@ -285,25 +295,28 @@ class PracticeScorer(private val context: Context) {
     /**
      * 计算两组姿态序列的相似度
      */
+
+
+    // 6.计算姿势相似度
     private fun calculateSimilarity(
         recorded: List<PoseLandmarkerResult>,
         reference: List<PoseLandmarkerResult>
     ): Double {
         try {
-            // 使用动态时间规整(DTW)算法对齐两个序列
-            val alignedPairs = alignSequences(recorded, reference)
+            // 获取较短和较长的列表
+            val minSize = minOf(recorded.size, reference.size)
+            val maxSize = maxOf(recorded.size, reference.size)
 
-            if (alignedPairs.isEmpty()) {
-                return 0.0
+            // 计算每一对姿态的相似度，使用较短列表的长度
+            val similarities = recorded.take(minSize).zip(reference.take(minSize)).map { (rec, ref) ->
+                comparePoses(rec, ref)      // PoseLandMarkerResult -> Double
             }
 
-            // 计算每一对姿态的相似度
-            val similarities = alignedPairs.map { (rec, ref) ->
-                comparePoses(rec, ref)
-            }
+            // 计算相似度总和
+            val totalSimilarity = similarities.sum()
 
-            // 返回平均相似度
-            return similarities.average()
+            // 返回归一化后的相似度
+            return totalSimilarity / maxSize
 
         } catch (e: Exception) {
             Log.e(TAG, "计算相似度失败: ${e.message}", e)
@@ -311,9 +324,11 @@ class PracticeScorer(private val context: Context) {
         }
     }
 
+
     /**
      * 对齐两个序列（简化版DTW）
      */
+    // 7.序列对齐 （目前没用）
     private fun alignSequences(
         recorded: List<PoseLandmarkerResult>,
         reference: List<PoseLandmarkerResult>
@@ -340,13 +355,15 @@ class PracticeScorer(private val context: Context) {
     /**
      * 比较两个姿态的相似度
      */
+    // 8.姿势相似度的核心实现 （ calculateSimilarity 调用了这个函数 ）
     private fun comparePoses(pose1: PoseLandmarkerResult, pose2: PoseLandmarkerResult): Double {
         // 如果任一姿态未检测到关键点，返回0
         if (pose1.landmarks().isEmpty() || pose2.landmarks().isEmpty()) {
             return 0.0
         }
 
-        val landmarks1 = pose1.landmarks()[0]
+        // PoseLandmarkerResult -> (Mutable)List<NormalizedLandmark>
+        val landmarks1 = pose1.landmarks()[0]       // kotlin.collections.(Mutable)List<NormalizedLandmark> ~~~~~~~~~~~~~~~~~~~~~~~~~~
         val landmarks2 = pose2.landmarks()[0]
 
         // 确保关键点数量相同
@@ -354,8 +371,8 @@ class PracticeScorer(private val context: Context) {
             return 0.0
         }
 
-        // 归一化关键点（相对于躯干中心）
-        val normalized1 = normalizeLandmarks(landmarks1)
+        // 归一化关键点（相对于躯干中心） List<NormalizedLandmark> -> float
+        val normalized1 = normalizeLandmarks(landmarks1)       // kotlin.collections.(Mutable)List<NormalizedLandmark> -> float ~~~~~~~~~~~~~~~~~~~~~~~~~~
         val normalized2 = normalizeLandmarks(landmarks2)
 
         // 计算每个关键点的相似度
@@ -366,8 +383,10 @@ class PracticeScorer(private val context: Context) {
             val weight = LANDMARK_WEIGHTS.getOrElse(i) { 1.0f }
             val distance = calculateDistance(normalized1[i], normalized2[i])
 
-            // 将距离转换为相似度 (距离越小，相似度越高)
-            val similarity = 1.0 / (1.0 + distance)
+//            // 将距离转换为相似度 (距离越小，相似度越高)
+//            val sigmoidDistance = shiftedSigmoid(distance)  // 处理过的距离
+//            val similarity = max(1 - sigmoidDistance, 0.0)  // 相似度 = 1 - 处理后的距离
+            val similarity = min(max(1-distance, 0.0)*4.5, 1.0)
 
             totalSimilarity += similarity * weight
             totalWeight += weight
@@ -376,11 +395,17 @@ class PracticeScorer(private val context: Context) {
         return if (totalWeight > 0) totalSimilarity / totalWeight else 0.0
     }
 
+    // 9.平移后的 Sigmoid 函数 （针对分数的处理）
+    fun shiftedSigmoid(x: Double, k: Double = 20.0, c: Double = 0.5): Double {
+        return 1.0 / (1.0 + Math.exp(-k * (x - c)))
+    }
     /**
      * 归一化关键点（相对于躯干中心和尺度）
      */
-    private fun normalizeLandmarks(landmarks: List<com.google.mediapipe.tasks.components.containers.NormalizedLandmark>): List<Triple<Float, Float, Float>> {
+    // 10.姿势标准化
+    private fun normalizeLandmarks(landmarks: List<NormalizedLandmark>): List<Triple<Float, Float, Float>> {
         // 计算躯干中心（肩膀和臀部的中点）
+//        val leftShoulder = landmarks.getOrNull(11)
         val leftShoulder = landmarks.getOrNull(11)
         val rightShoulder = landmarks.getOrNull(12)
         val leftHip = landmarks.getOrNull(23)
@@ -392,6 +417,7 @@ class PracticeScorer(private val context: Context) {
             val centerY = landmarks.map { it.y() }.average().toFloat()
             val scale = 1.0f
 
+            // List<NormalizedLandmark> -> float
             return landmarks.map { lm ->
                 Triple(
                     (lm.x() - centerX) / scale,
@@ -424,6 +450,7 @@ class PracticeScorer(private val context: Context) {
     /**
      * 计算两个3D点之间的欧氏距离
      */
+    // 11.计算姿势的欧式距离
     private fun calculateDistance(p1: Triple<Float, Float, Float>, p2: Triple<Float, Float, Float>): Double {
         val dx = p1.first - p2.first
         val dy = p1.second - p2.second
@@ -491,4 +518,6 @@ class PracticeScorer(private val context: Context) {
         }
     }
 }
+
+
 
